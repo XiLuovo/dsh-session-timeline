@@ -1,5 +1,7 @@
 # dsh-session-timeline
 
+[English](README.en.md) | 中文
+
 DeepSeek Harness 会话时间轴插件：在会话左侧渲染一条**横短横线时间轴**，用于在长会话中快速定位、跳转和预览。
 
 ![platform](https://img.shields.io/badge/platform-web-blue)
