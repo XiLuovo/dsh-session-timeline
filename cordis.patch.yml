@@ -1,0 +1,5 @@
+- insert:
+    - id: session-timeline
+      name: dsh-session-timeline
+      # 等待 host 服务就绪后再激活：sessionProjections 用于注册全量用户消息投影
+      inject: [sessionProjections]
