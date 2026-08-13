@@ -15,13 +15,13 @@ A session timeline plugin for DeepSeek Harness: renders a **horizontal-bar timel
 
 ## Features
 
-- **Horizontal-bar timeline**: one short horizontal bar (light gray) per user input; no bars where there are no messages. Bars use a fixed 14px spacing, and the count equals the **whole session's** user-message count. When they fit, the group centers vertically; when they don't, the timeline scrolls internally (no scrollbar).
-- **Full-session statistics (projection)**: uses DSH `sessionProjections` to incrementally fold every user message plus its AI reply preview. A persisted cache makes reloads instant, and new messages update in real time. Text is compactly truncated (user message 60 chars / reply 160 chars) to keep long-session pressure low.
+- **Horizontal-bar timeline**: one short horizontal bar per user input; no bars where there are no messages. The count equals the **whole session's** user-message count. When they fit, the group centers vertically; when they don't, the timeline scrolls internally (no scrollbar).
+- **Full-session statistics (projection)**: uses DSH `sessionProjections` to incrementally track every user message plus its AI reply preview. A persisted cache makes reloads instant, new messages update in real time, and long sessions stay lightweight.
 - **Current-message tracking (scroll-spy)**: the **active bar** always corresponds to the user message currently at the top of the viewport; scrolling the conversation moves the active bar accordingly. After you manually scroll the timeline it stays put, and following resumes after you click a bar to jump.
-- **Wave focus**: moving the mouse over the timeline makes the nearest bar turn active color and grow (12→30px), with neighboring bars tapering off above and below — back to normal length about 2.5 bars away.
-- **Rounded preview tooltip**: hovering a bar immediately shows a rounded tooltip — the user message on the first line (bold black, single-line ellipsis) and the AI reply below (gray, up to 3 lines), with the time pinned to the bottom-right of the last line. Font matches the conversation (16px), width about 20 CJK characters. History outside the loaded window is previewable too (from the projection cache).
+- **Wave focus**: moving the mouse over the timeline makes the nearest bar turn active color and grow, with neighboring bars tapering off above and below for a wave-like effect.
+- **Rounded preview tooltip**: hovering a bar immediately shows a rounded tooltip — the user message on the first line (bold black, single-line ellipsis) and the AI reply below (gray, multi-line), with the time pinned to the bottom-right of the last line. Font matches the conversation. History outside the loaded window is previewable too.
 - **Click to jump**: clicking any bar scrolls the conversation to that user input; bars outside the loaded window auto-load older history first, then jump.
-- **Collapse / expand**: a hover-fading **capsule handle** sits 1.3× the bar spacing above the first bar (click to collapse; while hovering, the first two bars taper in gray with the capsule acting as the active bar). Collapsed, it becomes a **full-height thin vertical bar**, hidden by default, fading in when the mouse nears its hit area, and clicking expands it. At any scroll position, 1.3 bars of blank space is kept between the capsule and the topmost bar.
+- **Collapse / expand**: a hover-fading **capsule handle** sits above the first bar (click to collapse; while hovering, the first two bars taper in gray with the capsule acting as the active bar). Collapsed, it becomes a **full-height thin vertical bar**, hidden by default, fading in when the mouse nears its hit area, and clicking expands it. At any scroll position, fixed blank space is kept between the capsule and the topmost bar.
 
 ## Installation
 
@@ -72,19 +72,6 @@ Open any session and the timeline appears on the left of the conversation:
 | Hover the capsule above the first bar | Capsule fades in; first two bars taper in gray |
 | Click the capsule | Collapses the timeline |
 | After collapse: hover/click the bar area | Bar fades in / expands the timeline |
-
-## Repository structure
-
-```
-dsh-session-timeline/
-├── package.json        # dsh.bundle + dsh.client manifest (deps: zod, sessionProjections)
-├── cordis.patch.yml    # bundle patch layer: plugin row (inject: sessionProjections)
-├── index.js            # host half: registers the timelineUserMessages projection (incremental fold + truncation)
-├── client.js           # browser half (__ModuleLoader__ bundle: all UI implementation)
-├── docs/               # docs and screenshots (with its own README)
-├── README.md           # Chinese readme
-└── README.en.md        # English readme (this file)
-```
 
 ## Dependencies
 
