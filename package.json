@@ -2,6 +2,10 @@
   "name": "dsh-session-timeline",
   "version": "1.0.0",
   "description": "DeepSeek Harness 会话左侧虚线时间轴：横短横线波浪、当前消息定位（scroll-spy）、点击跳转、圆角预览 tooltip、可收起/展开。",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XiLuovo/dsh-session-timeline.git"
+  },
   "type": "module",
   "main": "index.js",
   "exports": {

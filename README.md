@@ -6,6 +6,7 @@ DeepSeek Harness 会话时间轴插件：在会话左侧渲染一条**横短横�
 
 ![platform](https://img.shields.io/badge/platform-web-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
+![npm](https://img.shields.io/npm/v/dsh-session-timeline)
 
 ## 效果
 
@@ -27,7 +28,21 @@ DeepSeek Harness 会话时间轴插件：在会话左侧渲染一条**横短横�
 
 需要 DSH ≥ 0.1.0-rc（`dsh` CLI 已安装，web profile 含 sessionProjections 服务）。
 
-### 方式一：bundle 安装（推荐）
+### 方式一：npm 安装（推荐）
+
+已发布到 npm，预构建安装**无需 GitHub 构建授权**：
+
+```sh
+dsh plugin --profile web add dsh-session-timeline
+```
+
+然后启动（或重启）web：
+
+```sh
+dsh web
+```
+
+### 方式二：GitHub 安装
 
 ```sh
 dsh plugin --profile web add github:XiLuovo/dsh-session-timeline
@@ -41,7 +56,7 @@ dsh web
 
 > 本包是纯 JS 实现，`client.js` 即最终 bundle 产物，**无需 prepare 构建脚本**，GitHub 直接安装即可用。
 
-### 方式二：本地目录安装（开发调试）
+### 方式三：本地目录安装（开发调试）
 
 ```sh
 git clone https://github.com/XiLuovo/dsh-session-timeline.git
@@ -49,7 +64,7 @@ dsh plugin --profile web add ./dsh-session-timeline
 dsh web
 ```
 
-### 方式三：会话内动态加载（快速体验，不落盘）
+### 方式四：会话内动态加载（快速体验，不落盘）
 
 在 DSH Web 会话中让 agent 执行 `cordis_define`，粘贴 `client.js` 的内容作为 client 代码，`cordis_run` 启用。适合快速体验；注意动态方式没有 host 投影（全会话统计不可用），仅保留窗口内功能。
 

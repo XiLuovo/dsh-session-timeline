@@ -6,6 +6,7 @@ A session timeline plugin for DeepSeek Harness: renders a **horizontal-bar timel
 
 ![platform](https://img.shields.io/badge/platform-web-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
+![npm](https://img.shields.io/npm/v/dsh-session-timeline)
 
 ## Screenshots
 
@@ -27,7 +28,21 @@ A session timeline plugin for DeepSeek Harness: renders a **horizontal-bar timel
 
 Requires DSH ≥ 0.1.0-rc (`dsh` CLI installed; the web profile includes the `sessionProjections` service).
 
-### Option 1: bundle install (recommended)
+### Option 1: npm install (recommended)
+
+Published on npm — prebuilt install skips the GitHub build-approval step:
+
+```sh
+dsh plugin --profile web add dsh-session-timeline
+```
+
+Then start (or restart) the web app:
+
+```sh
+dsh web
+```
+
+### Option 2: install from GitHub
 
 ```sh
 dsh plugin --profile web add github:XiLuovo/dsh-session-timeline
@@ -41,7 +56,7 @@ dsh web
 
 > This package is pure JS — `client.js` is the final bundle artifact, so **no `prepare` build script is needed**; it works directly from GitHub.
 
-### Option 2: local directory install (development)
+### Option 3: local directory install (development)
 
 ```sh
 git clone https://github.com/XiLuovo/dsh-session-timeline.git
@@ -49,7 +64,7 @@ dsh plugin --profile web add ./dsh-session-timeline
 dsh web
 ```
 
-### Option 3: dynamic in-session load (quick try, not persisted)
+### Option 4: dynamic in-session load (quick try, not persisted)
 
 In a DSH Web session, ask the agent to run `cordis_define` and paste the contents of `client.js` as the client code, then `cordis_run` to enable it. Good for a quick try; note that the dynamic form has no host projection (full-session stats unavailable) and only keeps in-window features.
 

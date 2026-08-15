@@ -2,3 +2,10 @@ node_modules/
 *.log
 .DS_Store
 .chrome-tmp/
+
+# 本地测试/开发产物
+.awesome-fork/
+.local/
+.npm-cache/
+.pnpm-store/
+deepseek-harness/
